@@ -1,1 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Rubik", sans-serif;
+}
+
+.auth-bg {
+  background: linear-gradient(
+      180deg,
+      rgba(33, 35, 34, 0.5) 100%,
+      rgba(23, 24, 24, 0) 100%
+    ),
+    linear-gradient(360deg, #171818 10%, rgba(23, 24, 24, 0) 80%),
+    url("/auth-bg.jpg") center/cover no-repeat;
+  z-index: 1;
+}

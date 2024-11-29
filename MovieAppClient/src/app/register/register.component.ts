@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css'],
+  styleUrls: [],
 })
 export class RegisterComponent {
   registerForm: FormGroup;

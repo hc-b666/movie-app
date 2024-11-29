@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
   standalone: true,
   imports: [CommonModule, ReactiveFormsModule, RouterModule],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
+  styleUrls: [],
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -31,7 +31,10 @@ export class LoginComponent {
   onSubmit() {
     if (this.loginForm.valid) {
       this.http
-        .post<{ token: string }>(`${this.apiUrl}/auth/login`, this.loginForm.value)
+        .post<{ token: string }>(
+          `${this.apiUrl}/auth/login`,
+          this.loginForm.value
+        )
         .subscribe({
           next: (response) => {
             localStorage.setItem('token', response.token);

@@ -1,29 +1,33 @@
-<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label for="username">Username</label>
-    <input id="username" formControlName="username" type="text" />
-    <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-      Username is required
+<div class="auth-bg h-screen flex items-center justify-center">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="bg-white p-6 rounded shadow-md w-full max-w-md">
+    <div class="mb-4">
+      <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+      <input id="username" formControlName="username" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" />
+      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-red-500 text-sm mt-1">
+        Username is required
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label for="email">Email</label>
-    <input id="email" formControlName="email" type="email" />
-    <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-      Valid email is required
+    <div class="mb-4">
+      <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+      <input id="email" formControlName="email" type="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-red-500 text-sm mt-1">
+        Valid email is required
+      </div>
     </div>
-  </div>
 
-  <div>
-    <label for="password">Password</label>
-    <input id="password" formControlName="password" type="password" />
-    <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-      Password is required
+    <div class="mb-4">
+      <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+      <input id="password" formControlName="password" type="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" />
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-red-500 text-sm mt-1">
+        Password is required
+      </div>
     </div>
-  </div>
 
-  <p>Already have an account? <a routerLink="/login">Login here</a></p>
+    <p class="text-sm text-gray-600 mb-4">Already have an account? <a routerLink="/login" class="text-red-600 hover:text-red-500">Login here</a></p>
 
-  <button type="submit" [disabled]="registerForm.invalid">Register</button>
-</form>
+    <button type="submit" [disabled]="registerForm.invalid" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 cursor-pointer">
+      Register
+    </button>
+  </form>
+</div>
