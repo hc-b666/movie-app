@@ -121,4 +121,53 @@ app.MapPost("/api/v1/auth/login", async (ApplicationDbContext dbContext, UserDto
     return Results.Ok(new { token = jwt });
 });
 
+app.MapGet("/api/v1/movies", async (ApplicationDbContext dbContext) =>
+{
+    var movies = await dbContext.Movies.ToArrayAsync();
+
+    return Results.Ok(movies);
+}).RequireAuthorization();
+
+app.MapPost("/api/v1/movies", async (HttpContext httpContext, ApplicationDbContext dbContext, MovieDto movieDto) =>
+{
+    var userEmailClaim = httpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email);
+    if (userEmailClaim == null)
+    {
+        return Results.Unauthorized();
+    }
+
+    var userEmail = userEmailClaim.Value;
+
+    var user = await dbContext.Users.SingleOrDefaultAsync(u => u.Email == userEmail);
+    if (user == null)
+    {
+        return Results.Unauthorized();
+    }
+
+    var userId = user.Id;
+
+    if (string.IsNullOrWhiteSpace(movieDto.Title) || string.IsNullOrWhiteSpace(movieDto.Description) || string.IsNullOrWhiteSpace(movieDto.Rating))
+    {
+        return Results.BadRequest("Title, description, and rating are required.");
+    }
+
+    var movie = new MovieModel
+    {
+        Title = movieDto.Title,
+        Description = movieDto.Description,
+        Genre = movieDto.Genre,
+        ImageUrl = movieDto.ImageUrl,
+        ReleaseDate = movieDto.ReleaseDate,
+        Rating = movieDto.Rating,
+        Country = movieDto.Country,
+        Cast = movieDto.Cast,
+        UserId = userId,
+    };
+
+    dbContext.Movies.Add(movie);
+    await dbContext.SaveChangesAsync();
+
+    return Results.Ok("Movie added successfully!");
+}).RequireAuthorization();
+
 app.Run();

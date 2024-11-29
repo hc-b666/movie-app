@@ -7,4 +7,6 @@ public class UserModel
     public string? Email { get; set; }
 
     public string? PasswordHash { get; set; }
+
+    public ICollection<MovieModel> FavoriteMovies { get; set; } = new List<MovieModel>();
 }
