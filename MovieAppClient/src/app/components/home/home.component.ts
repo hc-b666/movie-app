@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MovieService, Movie } from '../movie.service';
+import { MovieService, Movie } from '../../services/api/movie.service';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
-  selector: 'app-protected',
+  selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
-  templateUrl: './protected.component.html',
-  styleUrl: './protected.component.css',
+  imports: [CommonModule, ReactiveFormsModule, NavbarComponent],
+  templateUrl: './home.component.html',
 })
-export class ProtectedComponent implements OnInit {
+export class HomeComponent implements OnInit {
   movies: Movie[] = [];
   movieForm: FormGroup;
 
@@ -31,7 +31,7 @@ export class ProtectedComponent implements OnInit {
   ngOnInit(): void {
     this.getMovies();
   }
-
+  
   getMovies(): void {
     this.movieService.getMovies().subscribe((movies) => {
       this.movies = movies;

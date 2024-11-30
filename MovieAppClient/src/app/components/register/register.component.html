@@ -1,0 +1,37 @@
+<div class="w-full h-screen auth-bg">
+  <div class="container h-full flex flex-col items-center">
+    <app-navbar class="self-start w-full py-5"></app-navbar>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="bg-white p-6 rounded shadow-md w-full max-w-md my-auto">
+      <div class="mb-4">
+        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+        <input id="username" formControlName="username" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" />
+        <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched" class="text-cyan-500 text-sm mt-1">
+          Username is required
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+        <input id="email" formControlName="email" type="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="text-cyan-500 text-sm mt-1">
+          Valid email is required
+        </div>
+      </div>
+  
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+        <input id="password" formControlName="password" type="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-cyan-500 focus:border-cyan-500 sm:text-sm" />
+        <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="text-cyan-500 text-sm mt-1">
+          Password is required
+        </div>
+      </div>
+  
+      <p class="text-sm text-gray-600 mb-4">Already have an account? <a routerLink="/login" class="text-cyan-600 hover:text-cyan-500">Login here</a></p>
+  
+      <button type="submit" [disabled]="registerForm.invalid" class="w-full bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500 cursor-pointer">
+        Register
+      </button>
+    </form>
+  </div>
+</div>

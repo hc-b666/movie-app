@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProtectedComponent } from './protected.component';
+import { MoviePageComponent } from './movie-page.component';
 
-describe('ProtectedComponent', () => {
-  let component: ProtectedComponent;
-  let fixture: ComponentFixture<ProtectedComponent>;
+describe('MoviePageComponent', () => {
+  let component: MoviePageComponent;
+  let fixture: ComponentFixture<MoviePageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProtectedComponent]
+      imports: [MoviePageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProtectedComponent);
+    fixture = TestBed.createComponent(MoviePageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

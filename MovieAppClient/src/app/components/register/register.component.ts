@@ -4,17 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
-import { environment } from '../environments/environment';
+import { environment } from '../../environments/environment';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-register',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
-  templateUrl: './login.component.html',
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NavbarComponent],
+  templateUrl: './register.component.html',
   styleUrls: [],
 })
-export class LoginComponent {
-  loginForm: FormGroup;
+export class RegisterComponent {
+  registerForm: FormGroup;
   private apiUrl = environment.apiUrl;
 
   constructor(
@@ -22,25 +23,20 @@ export class LoginComponent {
     private http: HttpClient,
     private router: Router
   ) {
-    this.loginForm = this.fb.group({
+    this.registerForm = this.fb.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
+    if (this.registerForm.valid) {
       this.http
-        .post<{ token: string }>(
-          `${this.apiUrl}/auth/login`,
-          this.loginForm.value
-        )
+        .post(`${this.apiUrl}/auth/register`, this.registerForm.value)
         .subscribe({
-          next: (response) => {
-            localStorage.setItem('token', response.token);
-            this.router.navigate(['/protected-route']);
-          },
-          error: (err) => console.error('Login error', err),
+          next: () => this.router.navigate(['/login']),
+          error: (err) => console.error('Registration error', err),
         });
     }
   }
