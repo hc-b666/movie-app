@@ -39,4 +39,56 @@ public class MovieService
 
         await _movieRepository.CreateMovieAsync(movie);
     }
+
+    public async Task<MovieModel> GetMovieAsync(int id)
+    {
+        return await _movieRepository.GetMovieAsync(id);
+    }
+
+    public async Task UpdateMovieAsync(int id, MovieDto movieDto, string userEmail)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(userEmail) ?? throw new UnauthorizedAccessException("User not found.");
+        var userId = user.Id;
+
+        var movie = await _movieRepository.GetMovieAsync(id);
+
+        if (movie.UserId != userId)
+        {
+            throw new UnauthorizedAccessException("User is not authorized to update this movie.");
+        }
+
+        movie.Title = movieDto.Title;
+        movie.Description = movieDto.Description;
+        movie.Genre = movieDto.Genre;
+        movie.ImageUrl = movieDto.ImageUrl;
+        movie.ReleaseDate = movieDto.ReleaseDate;
+        movie.Rating = movieDto.Rating;
+        movie.Country = movieDto.Country;
+        movie.Cast = movieDto.Cast;
+
+        await _movieRepository.UpdateMovieAsync(movie);
+    }
+
+    public async Task DeleteMovieAsync(int id, string userEmail)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(userEmail) ?? throw new UnauthorizedAccessException("User not found.");
+        var userId = user.Id;
+
+        var movie = await _movieRepository.GetMovieAsync(id);
+
+        if (movie.UserId != userId)
+        {
+            throw new UnauthorizedAccessException("User is not authorized to delete this movie.");
+        }
+
+        await _movieRepository.DeleteMovieAsync(id);
+    }
+
+    public async Task<IEnumerable<MovieModel>> GetMoviesForUserAsync(string userEmail)
+    {
+        var user = await _userRepository.GetUserByEmailAsync(userEmail) ?? throw new UnauthorizedAccessException("User not found.");
+        var userId = user.Id;
+
+        return await _movieRepository.GetMoviesForUserAsync(userId);
+    }
 }
