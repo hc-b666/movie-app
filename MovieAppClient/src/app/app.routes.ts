@@ -4,6 +4,7 @@ import { AuthGuard } from './services/auth/auth.guard';
 import { HomeComponent } from './components/home/home.component';
 import { MoviePageComponent } from './components/movie-page/movie-page.component';
 import { AddMovieComponent } from './components/add-movie/add-movie.component';
+import { EditMovieComponent } from './components/edit-movie/edit-movie.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -17,11 +18,16 @@ export const routes: Routes = [
   {
     path: 'movie/:id',
     component: MoviePageComponent,
-  canActivate: [AuthGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'add-movie',
     component: AddMovieComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'edit-movie/:id',
+    component: EditMovieComponent,
     canActivate: [AuthGuard],
   },
   {

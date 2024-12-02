@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
+
 import { environment } from '../../environments/environment';
 import { NavbarComponent } from '../navbar/navbar.component';
 
@@ -21,7 +23,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
@@ -41,8 +44,14 @@ export class RegisterComponent implements OnInit {
       this.http
         .post(`${this.apiUrl}/auth/register`, this.registerForm.value)
         .subscribe({
-          next: () => this.router.navigate(['/login']),
-          error: (err) => console.error('Registration error', err),
+          next: () => {
+            this.toastr.success('Registration successful', 'Success!');
+            this.router.navigate(['/login']);
+          },
+          error: (err) => {
+            console.error('Registration error', err);
+            this.toastr.error('Registration failed', 'Error');
+          },
         });
     }
   }

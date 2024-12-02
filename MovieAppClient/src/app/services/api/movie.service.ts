@@ -24,7 +24,7 @@ export class MovieService {
     return this.http.get<Movie>(`${this.apiUrl}/${id}`);
   }
 
-  putMovie(id: number, movie: Movie): Observable<any> {
+  updateMovie(id: number, movie: Movie): Observable<any> {
     return this.http.put(`${this.apiUrl}/${id}`, movie);
   }
 

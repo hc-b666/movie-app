@@ -36,4 +36,8 @@ export class MoviePageComponent implements OnInit {
       });
     }
   }
+
+  goBack(): void {
+    window.history.back();
+  }
 }

@@ -14,9 +14,14 @@
         <span *ngIf="movie.releaseDate">| &nbsp; Release Date: {{ movie.releaseDate }}</span>
       </div>
 
-      <p>{{ movie.description }}</p>
+      <div class="text-sm flex flex-col gap-1">
+        <p>Comment: {{ movie.description }}</p>
+        <p *ngIf="movie.genre">Genre: {{ movie.genre }}</p>
+        <p *ngIf="movie.cast">Cast: {{ movie.cast }}</p>
+        <p>Added by: {{ user.username }}</p>
+      </div>
 
-      <p>{{ user.username }}</p>
+      <button (click)="goBack()" class="bg-cyan-700 self-start py-1 px-3 rounded mt-10">Go Back</button>
     </div>
   </div>
 

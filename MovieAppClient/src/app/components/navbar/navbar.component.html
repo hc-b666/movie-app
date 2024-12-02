@@ -4,7 +4,8 @@
 
   <div *ngIf="authenticated" class="flex items-center gap-5">
     <a routerLink="/add-movie" class="text-base font-medium text-cyan-700 hover:underline">Add movie</a>
-    
+    <a routerLink="/profile/{{user?.id}}" class="text-base font-medium text-cyan-700 hover:underline">{{ user.username }}</a>
+
     <button (click)="logout()" class="ml-auto px-4 py-2 text-white bg-cyan-700 rounded hover:bg-cyan-800 duration-300">
       Log Out
     </button>
