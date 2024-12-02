@@ -19,10 +19,26 @@ export class MovieService {
   addMovie(movie: Movie): Observable<any> {
     return this.http.post(this.apiUrl, movie);
   }
+
+  getMovieById(id: number): Observable<Movie> {
+    return this.http.get<Movie>(`${this.apiUrl}/${id}`);
+  }
+
+  putMovie(id: number, movie: Movie): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, movie);
+  }
+
+  deleteMovie(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+  }
+
+  getMoviesForUser(): Observable<Movie[]> {
+    return this.http.get<Movie[]>(`${this.apiUrl}/user`);
+  }
 }
 
 export interface Movie {
-  id?: number;
+  id: number;
   title: string;
   description: string;
   genre?: string;
@@ -31,4 +47,5 @@ export interface Movie {
   rating: string;
   country?: string;
   cast?: string;
+  userId: number;
 }

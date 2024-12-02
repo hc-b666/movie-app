@@ -1,1 +1,23 @@
-<p>movie-page works!</p>
+<main class="bg-zinc-900 text-white w-full h-screen flex flex-col gap-10">
+  <app-navbar></app-navbar>
+
+  <div class="container flex-grow grid grid-cols-3 gap-20">
+    <div class="col-span-1 flex items-center justify-center">
+      <img [src]="movie.imageUrl" [alt]="movie.title" class="w-full object-cover">
+    </div>
+    <div class="col-span-2 flex flex-col justify-center">
+      <h2 class="text-4xl font-bold mb-3">{{ movie.title }}</h2>
+
+      <div class="flex items-center gap-3 text-sm text-yellow-500 mb-5">
+        <span *ngIf="movie.rating">Rating: {{ movie.rating }}</span> 
+        <span *ngIf="movie.country">| &nbsp; Country: {{ movie.country }}</span> 
+        <span *ngIf="movie.releaseDate">| &nbsp; Release Date: {{ movie.releaseDate }}</span>
+      </div>
+
+      <p>{{ movie.description }}</p>
+
+      <p>{{ user.username }}</p>
+    </div>
+  </div>
+
+</main>

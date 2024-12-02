@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 import { Movie, MovieService } from '../../services/api/movie.service';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -13,7 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class HomeComponent implements OnInit {
   movies: Movie[] = [];
 
-  constructor(private movieService: MovieService) {}
+  constructor(private movieService: MovieService, private router: Router) {}
 
   ngOnInit(): void {
     this.getMovies();
@@ -23,5 +24,9 @@ export class HomeComponent implements OnInit {
     this.movieService.getMovies().subscribe((movies) => {
       this.movies = movies;
     });
+  }
+
+  navigateToMoviePage(id: number): void {
+    this.router.navigate([`/movie/${id}`]);
   }
 }
