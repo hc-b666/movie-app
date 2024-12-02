@@ -11,12 +11,23 @@ public class UserRepository : IUserRepository
 
     public async Task<UserModel> GetUserByEmailAsync(string email)
     {
-        return await _ctx.Users.SingleOrDefaultAsync(u => u.Email == email);
+        return await _ctx.Users.SingleOrDefaultAsync(u => u.Email == email) ?? throw new Exception("User not found");
     }
 
     public async Task CreateUserAsync(UserModel user)
     {
         _ctx.Users.Add(user);
         await _ctx.SaveChangesAsync();
+    }
+
+    public async Task<UserDto> GetUserByIdAsync(int id)
+    {
+        var user = await _ctx.Users.SingleOrDefaultAsync(u => u.Id == id) ?? throw new Exception("User not found");
+        return new UserDto
+        {
+            Id = user.Id,
+            Username = user.Username,
+            Email = user.Email
+        };
     }
 }

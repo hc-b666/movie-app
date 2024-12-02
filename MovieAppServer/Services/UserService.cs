@@ -72,5 +72,10 @@ public class UserService
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
+
+    public async Task<UserDto> GetUserByIdAsync(int id)
+    {
+        return await _userRepository.GetUserByIdAsync(id);
+    }
 }
 

@@ -46,5 +46,4 @@ public class AuthController : ControllerBase
             return Unauthorized(ex.Message);
         }
     }
-
 }
