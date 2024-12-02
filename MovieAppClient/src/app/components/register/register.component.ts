@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { Router, RouterModule } from '@angular/router';
@@ -14,7 +14,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
   templateUrl: './register.component.html',
   styleUrls: [],
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
   private apiUrl = environment.apiUrl;
 
@@ -28,6 +28,12 @@ export class RegisterComponent {
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
     });
+  }
+
+  ngOnInit() {
+    if (localStorage.getItem('token')) {
+      this.router.navigate(['/']);
+    }
   }
 
   onSubmit() {

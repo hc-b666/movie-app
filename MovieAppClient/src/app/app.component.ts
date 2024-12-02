@@ -1,8 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
-import { AuthService } from './services/auth/auth.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 
 @Component({
@@ -11,15 +9,4 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   imports: [RouterOutlet, NavbarComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
-
-  constructor(private authService: AuthService, private router: Router) {}
-
-  ngOnInit() {
-    if (!this.authService.isAuthenticated()) {
-      this.router.navigate(['/login']);
-    } else {
-      this.router.navigate(['/']);
-    }
-  }
-}
+export class AppComponent {}

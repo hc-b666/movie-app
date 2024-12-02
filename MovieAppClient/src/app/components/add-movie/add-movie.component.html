@@ -1,1 +1,52 @@
-<p>add-movie works!</p>
+<main class="bg-zinc-900 min-h-screen flex flex-col text-white">
+  <app-navbar></app-navbar>
+
+  <div class="container flex-grow flex flex-col justify-center gap-5 mx-auto p-4">
+    <h2 class="text-xl font-bold">Add a your favorite movie</h2>
+    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="p-6 rounded shadow-md">
+      <div class="mb-4">
+        <label for="title" class="block text-sm font-medium text-gray-500">Title</label>
+        <input id="title" formControlName="title" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label for="description" class="block text-sm font-medium text-gray-500">Description</label>
+        <textarea id="description" formControlName="description" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm"></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="genre" class="block text-sm font-medium text-gray-500">Genre</label>
+        <input id="genre" formControlName="genre" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label for="imageUrl" class="block text-sm font-medium text-gray-500">Image url</label>
+        <textarea id="imageUrl" formControlName="imageUrl" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm"></textarea>
+      </div>
+
+      <div class="mb-4">
+        <label for="releaseDate" class="block text-sm font-medium text-gray-500">Year</label>
+        <input id="releaseDate" formControlName="releaseDate" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label for="rating" class="block text-sm font-medium text-gray-500">Rating</label>
+        <input id="rating" formControlName="rating" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label for="country" class="block text-sm font-medium text-gray-500">Country</label>
+        <input id="country" formControlName="country" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <div class="mb-4">
+        <label for="cast" class="block text-sm font-medium text-gray-500">Cast</label>
+        <input id="cast" formControlName="cast" type="text" class="mt-1 block w-full px-3 py-2 border border-cyan-500 rounded-md shadow-sm" />
+      </div>
+
+      <button type="submit" [disabled]="movieForm.invalid" class="w-full bg-cyan-600 text-white py-2 px-4 rounded-md hover:bg-cyan-700">
+        Add Movie
+      </button>
+    </form>
+  </div>
+</main>

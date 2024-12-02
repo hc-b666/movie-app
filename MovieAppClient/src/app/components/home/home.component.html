@@ -33,32 +33,5 @@
         <button class="bg-gray-700 mt-auto mb-2 w-[90%] self-center rounded-md font-normal text-sm py-1 hover:bg-gray-600 duration-300">See more</button>
       </div>
     </div>
-
-    <h2 class="text-xl font-bold mb-4 mt-2s0">Add a New Movie</h2>
-    <form [formGroup]="movieForm" (ngSubmit)="onSubmit()" class="p-6 rounded shadow-md">
-      <div class="mb-4">
-        <label for="title" class="block text-sm font-medium text-gray-700">Title</label>
-        <input id="title" formControlName="title" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
-      </div>
-
-      <div class="mb-4">
-        <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
-        <textarea id="description" formControlName="description" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
-      </div>
-
-      <div class="mb-4">
-        <label for="imageUrl" class="block text-sm font-medium text-gray-700">imageUrl</label>
-        <textarea id="imageUrl" formControlName="imageUrl" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm"></textarea>
-      </div>
-
-      <div class="mb-4">
-        <label for="rating" class="block text-sm font-medium text-gray-700">Rating</label>
-        <input id="rating" formControlName="rating" type="text" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm" />
-      </div>
-
-      <button type="submit" [disabled]="movieForm.invalid" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700">
-        Add Movie
-      </button>
-    </form>
   </div>
 </main>
