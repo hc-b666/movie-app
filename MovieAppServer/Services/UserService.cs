@@ -41,7 +41,7 @@ public class UserService
         await _userRepository.CreateUserAsync(user);
     }
 
-    public async Task<string> LoginUserAsync(UserDto userDto)
+    public async Task<LoginDto> LoginUserAsync(UserDto userDto)
     {
         if (string.IsNullOrWhiteSpace(userDto.Email) || string.IsNullOrWhiteSpace(userDto.Password))
         {
@@ -62,7 +62,7 @@ public class UserService
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]));
         var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
+        
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
@@ -70,7 +70,18 @@ public class UserService
             expires: DateTime.Now.AddHours(1),
             signingCredentials: creds);
 
-        return new JwtSecurityTokenHandler().WriteToken(token);
+        var tokenString = new JwtSecurityTokenHandler().WriteToken(token);
+
+        return new LoginDto
+        {
+            Token = tokenString,
+            User = new UserDto
+            {
+                Id = user.Id,
+                Username = user.Username,
+                Email = user.Email,
+            },
+        };
     }
 
     public async Task<UserDto> GetUserByIdAsync(int id)
@@ -79,3 +90,8 @@ public class UserService
     }
 }
 
+public class LoginDto
+{
+    public string Token { get; set; }
+    public UserDto User { get; set; }
+}

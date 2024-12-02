@@ -12,10 +12,5 @@ public class ApplicationDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         modelBuilder.Entity<UserModel>().HasIndex(u => u.Email).IsUnique();
-
-        modelBuilder.Entity<MovieModel>()
-            .HasOne(m => m.User)
-            .WithMany(u => u.FavoriteMovies)
-            .HasForeignKey(m => m.UserId);
     }
 }

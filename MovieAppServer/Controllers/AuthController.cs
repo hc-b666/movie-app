@@ -17,7 +17,7 @@ public class AuthController : ControllerBase
         try
         {
             await _userService.RegisterUserAsync(userDto);
-            return Ok("User registered successfully!");
+            return Ok(new { message = "User registered successfully" });
         }
         catch (ArgumentException ex)
         {
@@ -34,8 +34,8 @@ public class AuthController : ControllerBase
     {
         try
         {
-            var token = await _userService.LoginUserAsync(userDto);
-            return Ok(new { token });
+            var loginRes = await _userService.LoginUserAsync(userDto);
+            return Ok(new { loginRes.Token, loginRes.User });
         }
         catch (ArgumentException ex)
         {

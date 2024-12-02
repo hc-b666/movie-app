@@ -11,7 +11,7 @@ public class UserRepository : IUserRepository
 
     public async Task<UserModel> GetUserByEmailAsync(string email)
     {
-        return await _ctx.Users.SingleOrDefaultAsync(u => u.Email == email) ?? throw new Exception("User not found");
+        return await _ctx.Users.SingleOrDefaultAsync(u => u.Email == email);
     }
 
     public async Task CreateUserAsync(UserModel user)
