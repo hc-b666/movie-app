@@ -54,5 +54,3 @@ dotnet ef database update
 2. Install all the dependencies ```npm install```
 3. Run the project ```ng serve```
 4. In Chrome, go to http://localhost:4200, to see the frontend
-
-Enjoy 🎉
