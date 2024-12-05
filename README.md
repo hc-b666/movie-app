@@ -29,7 +29,7 @@ This movie application is build with Angular for the client and ASP.NET for the 
 npm install -g @angular/cli
 ```
 - [Node.js](https://nodejs.org/en/download/package-manager)
-- [.Net 8 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
+- [.Net 6 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/6.0)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 - [Visual Studio](https://visualstudio.microsoft.com/) (for Windows): Ensure you have the web development workload installed.
 - [Visual Studio Code](https://code.visualstudio.com/download) 
@@ -39,7 +39,7 @@ npm install -g @angular/cli
 git clone https://github.com/hc-b666/movie-app.git
 ```
 ### Backend
-1. Open .sln solution file inside MovieAppServer in Visual Studio | ```cd ./MovieAppServer``` in Visual Studio Code
+1. Open .sln solution file inside 00015589-WebApplicationDevelopment-CW in Visual Studio | ```cd ./00015589-WebApplicationDevelopment-CW``` in Visual Studio Code
 2. Migrate the models to your Database
 ```bash
 dotnet tool install --global dotnet-ef
@@ -47,7 +47,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 ``` 
 3. Click on F5 or Green Run button in Visual Studio |  ```dotnet run``` in Visual Studio Code
-4. In Chrome, go to http://localhost:5218/swagger, to see the API documentation
+4. In Chrome, go to http://localhost:5029/swagger, to see the API documentation
 
 ### Frontend
 1. Navigate to frontend folder ```cd ./MovieAppClient```
